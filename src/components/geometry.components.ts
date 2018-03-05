@@ -7,7 +7,7 @@ import { FeatureComponent } from './feature.component';
   template: `<ng-content></ng-content>`
 })
 export class GeometryLinestringComponent implements OnInit, OnDestroy {
-  public componentType: string = 'geometry-linestring';
+  public componentType = 'geometry-linestring';
   public instance: geom.LineString;
 
   constructor(private host: FeatureComponent) {
@@ -28,7 +28,7 @@ export class GeometryLinestringComponent implements OnInit, OnDestroy {
   template: `<ng-content></ng-content>`
 })
 export class GeometryPointComponent implements OnInit, OnDestroy {
-  public componentType: string = 'geometry-point';
+  public componentType = 'geometry-point';
   public instance: geom.Point;
 
   constructor(private host: FeatureComponent) {
@@ -50,7 +50,7 @@ export class GeometryPointComponent implements OnInit, OnDestroy {
   template: `<ng-content></ng-content>`
 })
 export class GeometryPolygonComponent implements OnInit, OnDestroy {
-  public componentType: string = 'geometry-polygon';
+  public componentType = 'geometry-polygon';
   public instance: geom.Polygon;
 
   constructor(private host: FeatureComponent) {

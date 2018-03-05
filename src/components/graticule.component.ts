@@ -8,7 +8,7 @@ import { MapComponent } from './map.component';
 })
 export class GraticuleComponent implements AfterContentInit, OnChanges {
   instance: any;
-  public componentType: string = 'graticule';
+  public componentType = 'graticule';
 
   @Input() strokeStyle: style.Stroke;
   @Input() showLabels: boolean;

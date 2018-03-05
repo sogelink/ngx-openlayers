@@ -14,10 +14,10 @@ import {
 
 export class MapComponent implements OnInit, AfterViewInit, OnChanges {
   public instance: Map;
-  public componentType: string = 'map';
+  public componentType = 'map';
 
-  @Input() width: string = '100%';
-  @Input() height: string = '100%';
+  @Input() width = '100%';
+  @Input() height = '100%';
   @Input() pixelRatio: number;
   @Input() keyboardEventTarget: Element|string;
   @Input() loadTilesWhileAnimating: boolean;

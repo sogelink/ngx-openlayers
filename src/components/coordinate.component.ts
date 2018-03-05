@@ -14,7 +14,7 @@ export class CoordinateComponent implements OnChanges {
 
   @Input() x: number;
   @Input() y: number;
-  @Input() srid: string = 'EPSG:3857';
+  @Input() srid = 'EPSG:3857';
 
   constructor(
     private map: MapComponent,
@@ -68,7 +68,7 @@ export class CollectionCoordinatesComponent implements OnChanges {
   private host: any;
 
   @Input() coordinates: [number, number][];
-  @Input() srid: string = 'EPSG:3857';
+  @Input() srid = 'EPSG:3857';
 
   constructor(
       private map: MapComponent,

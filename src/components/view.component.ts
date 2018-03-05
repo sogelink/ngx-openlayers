@@ -8,7 +8,7 @@ import { MapComponent } from './map.component';
 })
 export class ViewComponent implements OnInit, OnChanges, OnDestroy {
   public instance: View;
-  public componentType: string = 'view';
+  public componentType = 'view';
 
   @Input() constrainRotation: boolean|number;
   @Input() enableRotation: boolean;
