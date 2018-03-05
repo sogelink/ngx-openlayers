@@ -1,7 +1,10 @@
 import { Component, Optional, OnChanges, Input, SimpleChanges } from '@angular/core';
 import { proj, Coordinate } from 'openlayers';
 import { MapComponent } from './map.component';
-import { GeometryPointComponent, GeometryLinestringComponent, GeometryPolygonComponent } from './geometry.components';
+import {
+  GeometryPointComponent, GeometryLinestringComponent, GeometryPolygonComponent,
+  GeometryMultiPolygonComponent
+} from './geometry.components';
 import { ViewComponent } from './view.component';
 import { OverlayComponent } from './overlay.component';
 
@@ -73,13 +76,16 @@ export class CollectionCoordinatesComponent implements OnChanges {
   constructor(
       private map: MapComponent,
       @Optional() geometryLinestring: GeometryLinestringComponent,
-      @Optional() geometryPolygon: GeometryPolygonComponent
+      @Optional() geometryPolygon: GeometryPolygonComponent,
+      @Optional() geometryMultiPolygon: GeometryMultiPolygonComponent
   ) {
     // console.log('creating aol-collection-coordinates');
     if (!!geometryLinestring) {
       this.host = geometryLinestring;
     } else if (!!geometryPolygon) {
       this.host = geometryPolygon;
+    } else if (!!geometryMultiPolygon) {
+      this.host = geometryMultiPolygon;
     } else {
       throw new Error('aol-collection-coordinates must be a child of a geometry component');
     }
@@ -108,6 +114,9 @@ export class CollectionCoordinatesComponent implements OnChanges {
         this.host.instance.setCoordinates(transformedCoordinates);
         break;
       case 'geometry-polygon':
+        this.host.instance.setCoordinates([transformedCoordinates]);
+        break;
+      case 'geometry-multipolygon':
         this.host.instance.setCoordinates([transformedCoordinates]);
         break;
       default:

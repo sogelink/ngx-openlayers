@@ -21,7 +21,7 @@ var GeometryLinestringComponent = (function () {
 GeometryLinestringComponent.decorators = [
     { type: core_1.Component, args: [{
                 selector: 'aol-geometry-linestring',
-                template: "<ng-content></ng-content>"
+                template: "\n    <ng-content></ng-content>"
             },] },
 ];
 /** @nocollapse */
@@ -47,7 +47,7 @@ var GeometryPointComponent = (function () {
 GeometryPointComponent.decorators = [
     { type: core_1.Component, args: [{
                 selector: 'aol-geometry-point',
-                template: "<ng-content></ng-content>"
+                template: "\n    <ng-content></ng-content>"
             },] },
 ];
 /** @nocollapse */
@@ -74,7 +74,7 @@ var GeometryPolygonComponent = (function () {
 GeometryPolygonComponent.decorators = [
     { type: core_1.Component, args: [{
                 selector: 'aol-geometry-polygon',
-                template: "<ng-content></ng-content>"
+                template: "\n    <ng-content></ng-content>"
             },] },
 ];
 /** @nocollapse */
@@ -82,4 +82,56 @@ GeometryPolygonComponent.ctorParameters = function () { return [
     { type: feature_component_1.FeatureComponent, },
 ]; };
 exports.GeometryPolygonComponent = GeometryPolygonComponent;
+var GeometryMultiPolygonComponent = (function () {
+    function GeometryMultiPolygonComponent(host) {
+        this.host = host;
+        this.componentType = 'geometry-multipolygon';
+        // console.log('creating aol-geometry-polygon');
+    }
+    GeometryMultiPolygonComponent.prototype.ngOnInit = function () {
+        // defaulting coordinates to [0,0]. To be overridden in child component.
+        this.instance = new openlayers_1.geom.MultiPolygon([
+            [
+                [
+                    [
+                        4.83403,
+                        45.76789
+                    ],
+                    [
+                        4.834052,
+                        45.767718
+                    ],
+                    [
+                        4.836037,
+                        45.767886
+                    ],
+                    [
+                        4.835983,
+                        45.768039
+                    ],
+                    [
+                        4.83403,
+                        45.76789
+                    ]
+                ]
+            ]
+        ]);
+        this.host.instance.setGeometry(this.instance);
+    };
+    GeometryMultiPolygonComponent.prototype.ngOnDestroy = function () {
+        // this.host.setGeometry(null);
+    };
+    return GeometryMultiPolygonComponent;
+}());
+GeometryMultiPolygonComponent.decorators = [
+    { type: core_1.Component, args: [{
+                selector: 'aol-geometry-multipolygon',
+                template: "\n    <ng-content></ng-content>"
+            },] },
+];
+/** @nocollapse */
+GeometryMultiPolygonComponent.ctorParameters = function () { return [
+    { type: feature_component_1.FeatureComponent, },
+]; };
+exports.GeometryMultiPolygonComponent = GeometryMultiPolygonComponent;
 //# sourceMappingURL=geometry.components.js.map

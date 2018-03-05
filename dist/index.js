@@ -30,6 +30,7 @@ var COMPONENTS = [
     components_1.GeometryLinestringComponent,
     components_1.GeometryPointComponent,
     components_1.GeometryPolygonComponent,
+    components_1.GeometryMultiPolygonComponent,
     components_1.CoordinateComponent,
     components_1.CollectionCoordinatesComponent,
     components_1.StyleComponent,

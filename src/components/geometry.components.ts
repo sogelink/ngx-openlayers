@@ -1,10 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { geom } from 'openlayers';
-import { FeatureComponent } from './feature.component';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {geom} from 'openlayers';
+import {FeatureComponent} from './feature.component';
 
 @Component({
   selector: 'aol-geometry-linestring',
-  template: `<ng-content></ng-content>`
+  template: `
+    <ng-content></ng-content>`
 })
 export class GeometryLinestringComponent implements OnInit, OnDestroy {
   public componentType = 'geometry-linestring';
@@ -18,6 +19,7 @@ export class GeometryLinestringComponent implements OnInit, OnDestroy {
     this.instance = new geom.LineString([]);
     this.host.instance.setGeometry(this.instance);
   }
+
   ngOnDestroy() {
     // this.host.setGeometry(null);
   }
@@ -25,7 +27,8 @@ export class GeometryLinestringComponent implements OnInit, OnDestroy {
 
 @Component({
   selector: 'aol-geometry-point',
-  template: `<ng-content></ng-content>`
+  template: `
+    <ng-content></ng-content>`
 })
 export class GeometryPointComponent implements OnInit, OnDestroy {
   public componentType = 'geometry-point';
@@ -47,7 +50,8 @@ export class GeometryPointComponent implements OnInit, OnDestroy {
 
 @Component({
   selector: 'aol-geometry-polygon',
-  template: `<ng-content></ng-content>`
+  template: `
+    <ng-content></ng-content>`
 })
 export class GeometryPolygonComponent implements OnInit, OnDestroy {
   public componentType = 'geometry-polygon';
@@ -59,7 +63,56 @@ export class GeometryPolygonComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // defaulting coordinates to [0,0]. To be overridden in child component.
-    this.instance = new geom.Polygon([ [ [0, 0], [1, 0], [1, 1] ] ]);
+    this.instance = new geom.Polygon([[[0, 0], [1, 0], [1, 1]]]);
+    this.host.instance.setGeometry(this.instance);
+  }
+
+  ngOnDestroy() {
+    // this.host.setGeometry(null);
+  }
+}
+
+@Component({
+  selector: 'aol-geometry-multipolygon',
+  template: `
+    <ng-content></ng-content>`
+})
+export class GeometryMultiPolygonComponent implements OnInit, OnDestroy {
+  public componentType = 'geometry-multipolygon';
+  public instance: geom.MultiPolygon;
+
+  constructor(private host: FeatureComponent) {
+    // console.log('creating aol-geometry-polygon');
+  }
+
+  ngOnInit() {
+    // defaulting coordinates to [0,0]. To be overridden in child component.
+    this.instance = new geom.MultiPolygon([
+      [
+        [
+          [
+            4.83403,
+            45.76789
+          ],
+          [
+            4.834052,
+            45.767718
+          ],
+          [
+            4.836037,
+            45.767886
+          ],
+          [
+            4.835983,
+            45.768039
+          ],
+          [
+            4.83403,
+            45.76789
+          ]
+        ]
+      ]
+    ]);
     this.host.instance.setGeometry(this.instance);
   }
 

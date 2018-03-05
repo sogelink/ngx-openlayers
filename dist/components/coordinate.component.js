@@ -67,7 +67,7 @@ CoordinateComponent.propDecorators = {
 };
 exports.CoordinateComponent = CoordinateComponent;
 var CollectionCoordinatesComponent = (function () {
-    function CollectionCoordinatesComponent(map, geometryLinestring, geometryPolygon) {
+    function CollectionCoordinatesComponent(map, geometryLinestring, geometryPolygon, geometryMultiPolygon) {
         this.map = map;
         this.srid = 'EPSG:3857';
         // console.log('creating aol-collection-coordinates');
@@ -76,6 +76,9 @@ var CollectionCoordinatesComponent = (function () {
         }
         else if (!!geometryPolygon) {
             this.host = geometryPolygon;
+        }
+        else if (!!geometryMultiPolygon) {
+            this.host = geometryMultiPolygon;
         }
         else {
             throw new Error('aol-collection-coordinates must be a child of a geometry component');
@@ -104,6 +107,9 @@ var CollectionCoordinatesComponent = (function () {
             case 'geometry-polygon':
                 this.host.instance.setCoordinates([transformedCoordinates]);
                 break;
+            case 'geometry-multipolygon':
+                this.host.instance.setCoordinates([transformedCoordinates]);
+                break;
             default:
                 throw new Error('aol-collection-coordinates\' host is of unknown type: ' + this.host.componentType);
         }
@@ -121,6 +127,7 @@ CollectionCoordinatesComponent.ctorParameters = function () { return [
     { type: map_component_1.MapComponent, },
     { type: geometry_components_1.GeometryLinestringComponent, decorators: [{ type: core_1.Optional },] },
     { type: geometry_components_1.GeometryPolygonComponent, decorators: [{ type: core_1.Optional },] },
+    { type: geometry_components_1.GeometryMultiPolygonComponent, decorators: [{ type: core_1.Optional },] },
 ]; };
 CollectionCoordinatesComponent.propDecorators = {
     'coordinates': [{ type: core_1.Input },],
